@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const AuthorArticlePage = () => {
   const router = useRouter();
@@ -12,6 +13,7 @@ const AuthorArticlePage = () => {
       <pre>
         {JSON.stringify(router.query, null, 2)}
       </pre>
+      <Link href="/">元づ</Link>
     </div>
   )
 }
