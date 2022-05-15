@@ -1,3 +1,4 @@
+import React, { ReactNode } from "react"
 import { gql, GraphQLClient } from "graphql-request"
 
 export const getStaticProps = async () => {
@@ -20,24 +21,17 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      data: data
+      authors: data.authors
     }
   }
 }
 
-const Home = ({data}) => {
-  const { authors } = data
-
-  return (
-    <div>
+const Home = ({authors}) => (
+  <div>
     {authors.map((author) => (
       <p key={author.name}>{author.name}</p>
-    ))
-}
-
-    </div>
-
-  )
-}
+    ))}
+  </div>
+)
 
 export default Home
