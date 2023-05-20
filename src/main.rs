@@ -1,8 +1,9 @@
 use actix_web::{middleware, get, App, HttpServer, Responder};
 use dotenv::dotenv;
 use listenfd::ListenFd;
-use serde::__private::ser;
 use std::env;
+
+mod todos;
 
 #[get("/hello")]
 async fn hello_world() -> impl Responder {
@@ -16,8 +17,13 @@ async fn main() -> std::io::Result<()> {
     let mut listenfd = ListenFd::from_env();
 
     let mut server = HttpServer::new(|| {
+        /*
         App::new()
             .service(hello_world)
+            .wrap(middleware::Logger::default())
+        */
+        App::new()
+            .configure(todos::routes::init_routes)
             .wrap(middleware::Logger::default())
     });
 
