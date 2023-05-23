@@ -4,6 +4,7 @@ use listenfd::ListenFd;
 use std::env;
 
 mod todos;
+mod db;
 
 #[get("/hello")]
 async fn hello_world() -> impl Responder {
@@ -13,6 +14,7 @@ async fn hello_world() -> impl Responder {
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
     dotenv().ok();
+    db::init();
 
     let mut listenfd = ListenFd::from_env();
 
